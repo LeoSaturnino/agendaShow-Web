@@ -4,14 +4,7 @@
  * @var \App\Model\Entity\Evento[]|\Cake\Collection\CollectionInterface $eventos
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Evento'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Estabelecimentos'), ['controller' => 'Estabelecimentos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Estabelecimento'), ['controller' => 'Estabelecimentos', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
+<?= $this->element('Estabelecimentos/side-bar') ?>
 <div class="eventos index large-9 medium-8 columns content">
     <h3><?= __('Eventos') ?></h3>
     <table cellpadding="0" cellspacing="0">

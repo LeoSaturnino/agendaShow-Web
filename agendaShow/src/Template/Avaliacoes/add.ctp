@@ -4,15 +4,7 @@
  * @var \App\Model\Entity\Avaliaco $avaliaco
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Avaliacoes'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Clientes'), ['controller' => 'Clientes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Cliente'), ['controller' => 'Clientes', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Estabelecimentos'), ['controller' => 'Estabelecimentos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Estabelecimento'), ['controller' => 'Estabelecimentos', 'action' => 'add']) ?></li>
-    </ul>
+<?= $this->element('Estabelecimentos/side-bar') ?>
 </nav>
 <div class="avaliacoes form large-9 medium-8 columns content">
     <?= $this->Form->create($avaliaco) ?>

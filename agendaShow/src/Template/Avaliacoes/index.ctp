@@ -4,16 +4,7 @@
  * @var \App\Model\Entity\Avaliaco[]|\Cake\Collection\CollectionInterface $avaliacoes
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Avaliaco'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Clientes'), ['controller' => 'Clientes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Cliente'), ['controller' => 'Clientes', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Estabelecimentos'), ['controller' => 'Estabelecimentos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Estabelecimento'), ['controller' => 'Estabelecimentos', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
+<?= $this->element('Estabelecimentos/side-bar') ?>
 <div class="avaliacoes index large-9 medium-8 columns content">
     <h3><?= __('Avaliacoes') ?></h3>
     <table cellpadding="0" cellspacing="0">

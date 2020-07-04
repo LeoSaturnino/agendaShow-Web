@@ -68,7 +68,24 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
      */
     public function getAuthenticationService(ServerRequestInterface $request, ResponseInterface $response)
     {
+        $path = $request->getPath();
+
         $service = new AuthenticationService();
+        if (strpos($path, '/api') === 0) {
+            // Accept API tokens only
+            $service->setConfig([
+                'token' => 'covid2020',
+            ]);
+            $service->loadAuthenticator('Authentication.Token', [
+                'queryParam' => 'token',
+                'header' => 'Authorization',
+                'tokenPrefix' => 'Token'
+            ]);
+            $service->loadIdentifier('Authentication.Token');
+
+            return $service;
+        }
+
         $service->setConfig([
             'unauthenticatedRedirect' => '/users/login',
             'queryParam' => 'redirect',
@@ -101,29 +118,14 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
     public function middleware($middlewareQueue)
     {
         $middlewareQueue
-        // Catch any exceptions in the lower layers,
-        // and make an error page/response
-        ->add(new ErrorHandlerMiddleware(null, Configure::read('Error')))
-
-        // Handle plugin/theme assets like CakePHP normally does.
+            ->add(new ErrorHandlerMiddleware(null, Configure::read('Error')))
             ->add(new AssetMiddleware([
                 'cacheTime' => Configure::read('Asset.cacheTime'),
             ]))
-
-        // Add routing middleware.
-        // If you have a large number of routes connected, turning on routes
-        // caching in production could improve performance. For that when
-        // creating the middleware instance specify the cache config name by
-        // using it's second constructor argument:
-        // `new RoutingMiddleware($this, '_cake_routes_')`
             ->add(new RoutingMiddleware($this));
 
         // Create an authentication middleware object
         $authentication = new AuthenticationMiddleware($this);
-
-        // Add the middleware to the middleware queue.
-        // Authentication should be added *after* RoutingMiddleware.
-        // So that subdirectory information and routes are loaded.
         $middlewareQueue->add($authentication);
 
         return $middlewareQueue;
@@ -144,4 +146,5 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 
         // Load more plugins here
     }
+
 }

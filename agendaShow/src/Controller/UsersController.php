@@ -15,7 +15,7 @@ class UsersController extends AppController
 
     public function initialize()
     {
-        parent::initialize();       
+        parent::initialize();
 
         $this->Authentication->allowUnauthenticated(['login', 'add']);
     }
@@ -25,7 +25,20 @@ class UsersController extends AppController
         $result = $this->Authentication->getResult();
         // If the user is logged in send them away.
         if ($result->isValid()) {
-            $target = $this->Authentication->getLoginRedirect() ?? '/Users/index';
+            if ($result->getData()->tipo == 1) {
+                $acesso = 'Users/index';
+
+            } else if ($result->getData()->tipo == 2) {
+                $acesso = 'Estabelecimentos/view';
+
+            } else if ($result->getData()->tipo == 3) {
+                $acesso = 'Clientes/view';
+
+            } else {
+                $this->logout();
+            }
+
+            $target = $this->Authentication->getLoginRedirect() ?? $acesso;
             return $this->redirect($target);
         }
         if ($this->request->is('post') && !$result->isValid()) {

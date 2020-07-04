@@ -88,6 +88,16 @@ Router::scope('/', function (RouteBuilder $routes) {
      * You can remove these routes once you've connected the
      * routes you want in your application.
      */
+
+    // Router::prefix('admin', function (RouteBuilder $routes) {
+    //     $routes->fallbacks(DashedRoute::class);
+    // });
+
+    // Router::prefix('cli', function (RouteBuilder $routes) {
+    //     $routes->fallbacks(DashedRoute::class);
+    // });
+
+
     $routes->fallbacks(DashedRoute::class);
 });
 
@@ -102,3 +112,9 @@ Router::scope('/', function (RouteBuilder $routes) {
  * });
  * ```
  */
+
+Router::scope('/api', function (RouteBuilder $routes) {
+        
+    $routes->connect('/pages/*', ['prefix' => 'Api', 'controller' => 'Pages', 'action' => 'display']);
+
+     });
