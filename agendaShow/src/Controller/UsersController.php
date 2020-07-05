@@ -29,17 +29,23 @@ class UsersController extends AppController
                 $acesso = 'Users/index';
 
             } else if ($result->getData()->tipo == 2) {
-                $acesso = 'Estabelecimentos/view';
+                $id = $result->getData()->id;
 
-            } else if ($result->getData()->tipo == 3) {
-                $acesso = 'Clientes/view';
+                $this->loadModel('Estabelecimentos');
+                $est = $this->Estabelecimentos->find('all')->where(['Estabelecimentos.users_id' => $id])->toList();
+
+                if (!empty($est)) {
+                    $acesso = 'Estabelecimentos/view/' . $est[0]->id;
+                } else {
+                    $acesso = 'Estabelecimentos/add/' . $id;
+                }
 
             } else {
                 $this->logout();
+                return;
             }
 
-            $target = $this->Authentication->getLoginRedirect() ?? $acesso;
-            return $this->redirect($target);
+            return $this->redirect($acesso);
         }
         if ($this->request->is('post') && !$result->isValid()) {
             $this->Flash->error('Invalid username or password');

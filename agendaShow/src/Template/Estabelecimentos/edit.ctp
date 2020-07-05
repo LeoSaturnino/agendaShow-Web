@@ -10,7 +10,7 @@
     <fieldset>
         <legend><?= __('Edit Estabelecimento') ?></legend>
         <?php
-            echo $this->Form->control('users_id', ['options' => $users]);
+            echo $this->Form->control('users_id', ['options' => [$user->id], 'default' => $user->id]);
             echo $this->Form->control('nome');
             echo $this->Form->control('categoria');
             echo $this->Form->control('proprietario');

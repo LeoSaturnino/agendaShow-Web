@@ -4,7 +4,7 @@
  * @var \App\Model\Entity\User $user
  */
 ?>
-<?= $this->element('Admin/side-bar') ?>
+<?= $this->element('Estabelecimentos/side-bar') ?>
 <div class="users view large-9 medium-8 columns content">
     <h3><?= h($user->id) ?></h3>
     <table class="vertical-table">

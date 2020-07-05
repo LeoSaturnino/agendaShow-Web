@@ -48,7 +48,7 @@ class EstabelecimentosController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($id = null)
     {
 
         $estabelecimento = $this->Estabelecimentos->newEntity();
@@ -61,8 +61,8 @@ class EstabelecimentosController extends AppController
             }
             $this->Flash->error(__('The estabelecimento could not be saved. Please, try again.'));
         }
-        $users = $this->Estabelecimentos->Users->find('list');
-        $this->set(compact('estabelecimento', 'users'));
+        $user = $this->Estabelecimentos->Users->get($id);
+        $this->set(compact('estabelecimento', 'user'));
     }
 
     /**
@@ -82,31 +82,12 @@ class EstabelecimentosController extends AppController
             if ($this->Estabelecimentos->save($estabelecimento)) {
                 $this->Flash->success(__('The estabelecimento has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view', $estabelecimento->id]);
             }
             $this->Flash->error(__('The estabelecimento could not be saved. Please, try again.'));
         }
-        $users = $this->Estabelecimentos->Users->find('list', ['limit' => 200]);
-        $this->set(compact('estabelecimento', 'users'));
+        $user = $this->Estabelecimentos->Users->get($estabelecimento->users_id);
+        $this->set(compact('estabelecimento', 'user'));
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Estabelecimento id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $estabelecimento = $this->Estabelecimentos->get($id);
-        if ($this->Estabelecimentos->delete($estabelecimento)) {
-            $this->Flash->success(__('The estabelecimento has been deleted.'));
-        } else {
-            $this->Flash->error(__('The estabelecimento could not be deleted. Please, try again.'));
-        }
-
-        return $this->redirect(['action' => 'index']);
-    }
 }
