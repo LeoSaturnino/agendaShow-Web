@@ -10,7 +10,7 @@
     <fieldset>
         <legend><?= __('Edit Evento') ?></legend>
         <?php
-            echo $this->Form->control('estabelecimentos_id', ['options' => $estabelecimentos]);
+            echo $this->Form->control('estabelecimentos_id', ['default' => $estabelecimento]);
             echo $this->Form->control('nome');
             echo $this->Form->control('descricao');
             echo $this->Form->control('banner');

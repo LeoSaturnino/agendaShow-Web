@@ -17,14 +17,18 @@ class EventosController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function index()
+    public function index($id = null)
     {
         $this->paginate = [
             'contain' => ['Estabelecimentos'],
+            'conditions' => ['Estabelecimentos.id' => $id],
         ];
         $eventos = $this->paginate($this->Eventos);
+        $estabelecimento = $this->Eventos->Estabelecimentos->get($id, [
+            'contain' => ['Users'],
+        ]);
 
-        $this->set(compact('eventos'));
+        $this->set(compact('eventos', 'estabelecimento'));
     }
 
     /**
@@ -48,7 +52,7 @@ class EventosController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($id = null)
     {
         $evento = $this->Eventos->newEntity();
         if ($this->request->is('post')) {
@@ -60,8 +64,8 @@ class EventosController extends AppController
             }
             $this->Flash->error(__('The evento could not be saved. Please, try again.'));
         }
-        $estabelecimentos = $this->Eventos->Estabelecimentos->find('list', ['limit' => 200]);
-        $this->set(compact('evento', 'estabelecimentos'));
+        $estabelecimento = $this->Eventos->Estabelecimentos->get($id);
+        $this->set(compact('evento', 'estabelecimento'));
     }
 
     /**
@@ -81,12 +85,11 @@ class EventosController extends AppController
             if ($this->Eventos->save($evento)) {
                 $this->Flash->success(__('The evento has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'index', $evento->estabelecimentos_id]);
             }
             $this->Flash->error(__('The evento could not be saved. Please, try again.'));
         }
-        $estabelecimentos = $this->Eventos->Estabelecimentos->find('list', ['limit' => 200]);
-        $this->set(compact('evento', 'estabelecimentos'));
+        $this->set(compact('evento'));
     }
 
     /**
@@ -106,6 +109,6 @@ class EventosController extends AppController
             $this->Flash->error(__('The evento could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['action' => 'index', $evento->estabelecimentos_id]);
     }
 }

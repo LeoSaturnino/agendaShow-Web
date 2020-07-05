@@ -52,7 +52,9 @@ class EventosController extends AppController
     public function view($id = null)
     {
         if ($id != null) {
-            $evento = $this->Evento->get($id);
+            $evento = $this->Evento->get($id, [
+                'contain' => ['Estabelecimentos'],
+            ]);
 
             $resultJ = json_encode($evento);
             $this->response->type('json');

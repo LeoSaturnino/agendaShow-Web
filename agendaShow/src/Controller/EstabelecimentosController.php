@@ -48,7 +48,7 @@ class EstabelecimentosController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($id = null)
     {
         $estabelecimento = $this->Estabelecimentos->newEntity();
         if ($this->request->is('post')) {
@@ -56,12 +56,12 @@ class EstabelecimentosController extends AppController
             if ($this->Estabelecimentos->save($estabelecimento)) {
                 $this->Flash->success(__('The estabelecimento has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view', $estabelecimento->id]);
             }
             $this->Flash->error(__('The estabelecimento could not be saved. Please, try again.'));
         }
-        $users = $this->Estabelecimentos->Users->find('list', ['limit' => 200]);
-        $this->set(compact('estabelecimento', 'users'));
+        $user = $this->Estabelecimentos->Users->get($id);
+        $this->set(compact('estabelecimento', 'user'));
     }
 
     /**
@@ -81,12 +81,10 @@ class EstabelecimentosController extends AppController
             if ($this->Estabelecimentos->save($estabelecimento)) {
                 $this->Flash->success(__('The estabelecimento has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view', $estabelecimento->id]);
             }
             $this->Flash->error(__('The estabelecimento could not be saved. Please, try again.'));
         }
-        $users = $this->Estabelecimentos->Users->find('list', ['limit' => 200]);
-        $this->set(compact('estabelecimento', 'users'));
     }
 
     /**
