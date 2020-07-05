@@ -50,17 +50,18 @@ class EstabelecimentosController extends AppController
      */
     public function add()
     {
+
         $estabelecimento = $this->Estabelecimentos->newEntity();
         if ($this->request->is('post')) {
             $estabelecimento = $this->Estabelecimentos->patchEntity($estabelecimento, $this->request->getData());
             if ($this->Estabelecimentos->save($estabelecimento)) {
                 $this->Flash->success(__('The estabelecimento has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view', $estabelecimento->id]);
             }
             $this->Flash->error(__('The estabelecimento could not be saved. Please, try again.'));
         }
-        $users = $this->Estabelecimentos->Users->find('list', ['limit' => 200]);
+        $users = $this->Estabelecimentos->Users->find('list');
         $this->set(compact('estabelecimento', 'users'));
     }
 

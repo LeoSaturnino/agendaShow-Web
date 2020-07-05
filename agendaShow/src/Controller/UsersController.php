@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\Log\Log;
 /**
  * Users Controller
  *
@@ -87,6 +87,8 @@ class UsersController extends AppController
      */
     public function add()
     {
+        $user = $this->request->getAttribute('identity');
+        Log::write('debug', $user);
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
