@@ -19,18 +19,26 @@ class AvaliacoesController extends AppController
      */
     public function index($id = null)
     {
-        $this->paginate = [
-            'contain' => ['Clientes', 'Estabelecimentos'],
-            'conditions' => ['Estabelecimentos.id' => $id],
-            'group' => 'Clientes.id',
-        ];
-        $avaliacoes = $this->paginate($this->Avaliacoes);
-        $estabelecimento = $this->Avaliacoes->Estabelecimentos->get($id, [
-            'contain' => ['Users'],
-        ]);
+        if ($id != null) {
+            $this->paginate = [
+                'contain' => ['Clientes', 'Estabelecimentos'],
+                'conditions' => ['Estabelecimentos.id' => $id],
+                'group' => 'Clientes.id',
+            ];
+            $avaliacoes = $this->paginate($this->Avaliacoes);
+            $estabelecimento = $this->Avaliacoes->Estabelecimentos->get($id, [
+                'contain' => ['Users'],
+            ]);
 
+            $this->set(compact('avaliacoes', 'estabelecimento'));
+        } else {
+            $this->paginate = [
+                'contain' => ['Clientes', 'Estabelecimentos'],
+            ];
+            $avaliacoes = $this->paginate($this->Avaliacoes);
 
-        $this->set(compact('avaliacoes', 'estabelecimento'));
+            $this->set(compact('avaliacoes'));
+        }
     }
 
     /**

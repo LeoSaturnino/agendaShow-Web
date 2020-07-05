@@ -19,16 +19,25 @@ class EventosController extends AppController
      */
     public function index($id = null)
     {
-        $this->paginate = [
-            'contain' => ['Estabelecimentos'],
-            'conditions' => ['Estabelecimentos.id' => $id],
-        ];
-        $eventos = $this->paginate($this->Eventos);
-        $estabelecimento = $this->Eventos->Estabelecimentos->get($id, [
-            'contain' => ['Users'],
-        ]);
+        if ($id != null) {
+            $this->paginate = [
+                'contain' => ['Estabelecimentos'],
+                'conditions' => ['Estabelecimentos.id' => $id],
+            ];
+            $eventos = $this->paginate($this->Eventos);
+            $estabelecimento = $this->Eventos->Estabelecimentos->get($id, [
+                'contain' => ['Users'],
+            ]);
 
-        $this->set(compact('eventos', 'estabelecimento'));
+            $this->set(compact('eventos', 'estabelecimento'));
+        } else {
+            $this->paginate = [
+                'contain' => ['Estabelecimentos'],
+            ];
+            $eventos = $this->paginate($this->Eventos);
+
+            $this->set(compact('eventos'));
+        }
     }
 
     /**

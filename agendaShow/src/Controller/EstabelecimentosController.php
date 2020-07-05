@@ -85,25 +85,8 @@ class EstabelecimentosController extends AppController
             }
             $this->Flash->error(__('The estabelecimento could not be saved. Please, try again.'));
         }
+        $user = $this->Estabelecimentos->Users->get($estabelecimento->users_id);
+        $this->set(compact('estabelecimento', 'user'));
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Estabelecimento id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $estabelecimento = $this->Estabelecimentos->get($id);
-        if ($this->Estabelecimentos->delete($estabelecimento)) {
-            $this->Flash->success(__('The estabelecimento has been deleted.'));
-        } else {
-            $this->Flash->error(__('The estabelecimento could not be deleted. Please, try again.'));
-        }
-
-        return $this->redirect(['action' => 'index']);
-    }
 }

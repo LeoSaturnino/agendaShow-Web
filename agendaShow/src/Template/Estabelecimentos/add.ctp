@@ -9,7 +9,7 @@
     <fieldset>
         <legend><?= __('Add Estabelecimento') ?></legend>
         <?php
-            echo $this->Form->hidden('users_id', ['default' => $user]);
+            echo $this->Form->control('users_id', ['options' => [$user->id], 'default' => $user->id]);
             echo $this->Form->control('nome');
             echo $this->Form->control('categoria');
             echo $this->Form->control('proprietario');
