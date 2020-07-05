@@ -40,7 +40,12 @@ class EstabelecimentosController extends AppController
             'contain' => ['Users'],
         ]);
 
-        $this->set('estabelecimento', $estabelecimento);
+        $this->loadModel('Eventos');
+
+        $eventos = $this->Eventos->find('all')->where(['estabelecimentos_id' => $id])->toList();
+        
+        $this->set(compact('estabelecimento', 'user', 'eventos'));
+        // $this->set('estabelecimento', $estabelecimento);
     }
 
     /**
@@ -50,6 +55,7 @@ class EstabelecimentosController extends AppController
      */
     public function add($id = null)
     {
+
         $estabelecimento = $this->Estabelecimentos->newEntity();
         if ($this->request->is('post')) {
             $estabelecimento = $this->Estabelecimentos->patchEntity($estabelecimento, $this->request->getData());
