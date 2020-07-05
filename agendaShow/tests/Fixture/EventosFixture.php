@@ -31,9 +31,10 @@ class EventosFixture extends TestFixture
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
             'id' => ['type' => 'unique', 'columns' => ['id'], 'length' => []],
             'estabelecimentos_id' => ['type' => 'unique', 'columns' => ['estabelecimentos_id'], 'length' => []],
+            'fk_eventos_estabelecimentos_bind' => ['type' => 'foreign', 'columns' => ['estabelecimentos_id'], 'references' => ['estabelecimentos', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
         ],
         '_options' => [
-            'engine' => 'MyISAM',
+            'engine' => 'InnoDB',
             'collation' => 'latin1_swedish_ci'
         ],
     ];
@@ -54,8 +55,8 @@ class EventosFixture extends TestFixture
                 'banner' => 'Lorem ipsum dolor sit amet',
                 'cronograma' => 'Lorem ipsum dolor sit amet',
                 'status' => 1,
-                'created' => 1593825626,
-                'modified' => 1593825626,
+                'created' => 1593981580,
+                'modified' => 1593981580,
             ],
         ];
         parent::init();

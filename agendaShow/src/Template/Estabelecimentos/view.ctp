@@ -6,11 +6,11 @@
 ?>
 <?= $this->element('Estabelecimentos/side-bar') ?>
 <div class="estabelecimentos view large-9 medium-8 columns content">
-    <h3><?= h($estabelecimento->id) ?></h3>
+    <h3><?= h($estabelecimento->nome)?> #<?= h($estabelecimento->id) ?></h3>
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('User') ?></th>
-            <td><?= $estabelecimento->has('user') ? $this->Html->link($estabelecimento->user->id, ['controller' => 'Users', 'action' => 'view', $estabelecimento->user->id]) : '' ?></td>
+            <td><?= $estabelecimento->has('user') ? $this->Html->link($estabelecimento->user->username, ['controller' => 'Users', 'action' => 'view', $estabelecimento->user->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Nome') ?></th>
@@ -45,24 +45,36 @@
             <td><?= h($estabelecimento->cidade) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($estabelecimento->id) ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Categoria') ?></th>
-            <td><?= $this->Number->format($estabelecimento->categoria) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Status') ?></th>
-            <td><?= $this->Number->format($estabelecimento->status) ?></td>
+            <td><?= $estabelecimento->has('categoria') ? (($estabelecimento->categoria == 1) ? 'Restaurante' : (($estabelecimento->categoria == 2) ? 'Casa de Show' : ($estabelecimento->categoria == 3)? 'Bar':'Buteco')) : 'Not'; ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Created') ?></th>
             <td><?= h($estabelecimento->created) ?></td>
         </tr>
+    </table>
+
+    <h3>Eventos</h3>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col"><?= __('Nome do evento') ?></th>
+                <th scope="col"><?= __('Descrição') ?></th>
+                <th scope="col"><?= __('Cronograma') ?></th>
+            </tr>
+        </thead>
         <tr>
-            <th scope="row"><?= __('Modified') ?></th>
-            <td><?= h($estabelecimento->modified) ?></td>
+            <?php foreach($eventos as $evento){
+            ?>
+            <td><?= $evento->nome ;?></td>
+            <td><?= $evento->descricao ;?></td>
+            <td><?= $evento->cronograma ;?></td>
+
+            <?php 
+            } ?>
         </tr>
     </table>
+    <?php 
+        echo $this->Html->link('Adcionar', ['controller' => 'Eventos', 'action' => 'add', $estabelecimento->id], ['target' => 'blank']);
+    ?>
 </div>

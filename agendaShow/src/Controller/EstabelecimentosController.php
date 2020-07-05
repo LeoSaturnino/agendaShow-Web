@@ -40,7 +40,12 @@ class EstabelecimentosController extends AppController
             'contain' => ['Users'],
         ]);
 
-        $this->set('estabelecimento', $estabelecimento);
+        $this->loadModel('Eventos');
+
+        $eventos = $this->Eventos->find('all')->where(['estabelecimentos_id' => $id])->toList();
+        
+        $this->set(compact('estabelecimento', 'user', 'eventos'));
+        // $this->set('estabelecimento', $estabelecimento);
     }
 
     /**

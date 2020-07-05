@@ -10,11 +10,11 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('nome') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('categoria') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('proprietario') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('cidade') ?></th>
+                <th scope="col"><?= h('created') ?></th>
+                <th scope="col"><?= h('nome') ?></th>
+                <th scope="col"><?= h('categoria') ?></th>
+                <th scope="col"><?= h('proprietario') ?></th>
+                <th scope="col"><?= h('cidade') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
                 <!-- <th scope="col"><!= $this->Paginator->sort('telefone') ?></th> -->
                 <!-- <th scope="col"><!= $this->Paginator->sort('celular') ?></th> -->
@@ -29,7 +29,8 @@
             <tr>
                 <td><?= h($estabelecimento->created) ?></td>
                 <td><?= h($estabelecimento->nome) ?></td>
-                <td><?= h($estabelecimento->categoria) ?></td>
+                <!-- 1 => 'Restaurante', 2 => 'Casa de Show', 3 => 'Bar', 4 => 'Buteco' -->
+                <td><?= $estabelecimento->has('categoria') ? (($estabelecimento->categoria == 1) ? 'Restaurante' : (($estabelecimento->categoria == 2) ? 'Casa de Show' : ($estabelecimento->categoria == 3)? 'Bar':'Buteco')) : 'Not'; ?></td>
                 <td><?= h($estabelecimento->proprietario) ?></td>
                 <td><?= h($estabelecimento->cidade) ?></td>
                 <td class="actions">

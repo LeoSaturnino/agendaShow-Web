@@ -35,9 +35,10 @@ class EstabelecimentosFixture extends TestFixture
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
             'id' => ['type' => 'unique', 'columns' => ['id'], 'length' => []],
+            'fk_estabelecimentos_users_bind' => ['type' => 'foreign', 'columns' => ['users_id'], 'references' => ['users', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
         ],
         '_options' => [
-            'engine' => 'MyISAM',
+            'engine' => 'InnoDB',
             'collation' => 'latin1_swedish_ci'
         ],
     ];
@@ -63,8 +64,8 @@ class EstabelecimentosFixture extends TestFixture
                 'numero' => 'Lorem ipsum dolor sit amet',
                 'cidade' => 'Lorem ipsum dolor sit amet',
                 'status' => 1,
-                'created' => 1593825619,
-                'modified' => 1593825619,
+                'created' => 1593981602,
+                'modified' => 1593981602,
             ],
         ];
         parent::init();
