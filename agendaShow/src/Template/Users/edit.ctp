@@ -5,7 +5,7 @@
  */
 ?>
 <?= $this->element('Estabelecimentos/side-bar') ?>
-<div class="users form large-9 medium-8 columns content">
+<div class="users form large-10 medium-9 columns content">
     <?= $this->Form->create($user) ?>
     <fieldset>
         <legend><?= __('Edit User') ?></legend>
@@ -16,6 +16,6 @@
             echo $this->Form->control('password');
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Submit'), ['class'=>"button" ]) ?>
     <?= $this->Form->end() ?>
 </div>

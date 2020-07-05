@@ -18,13 +18,6 @@ class AvaliacoesController extends AppController
         parent::initialize();
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Avaliaco id.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function view($id = null)
     {
         if ($id != null) {
@@ -43,11 +36,6 @@ class AvaliacoesController extends AppController
         return $this->response;
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
     public function add()
     {
         $avaliaco = $this->Avaliacoes->newEntity();
@@ -66,13 +54,6 @@ class AvaliacoesController extends AppController
         }
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Avaliaco id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function edit($id = null)
     {
         $avaliaco = $this->Avaliacoes->get($id);

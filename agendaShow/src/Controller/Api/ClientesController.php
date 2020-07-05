@@ -19,13 +19,6 @@ class ClientesController extends AppController
         $this->Auth->allow(['add']);
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Cliente id.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function view($id = null)
     {
         if ($id != null) {
@@ -45,11 +38,6 @@ class ClientesController extends AppController
         return $this->response;
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
     public function add()
     {
         $cliente = $this->Clientes->newEntity();
@@ -69,13 +57,6 @@ class ClientesController extends AppController
         }
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Cliente id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function edit($id = null)
     {
         $cliente = $this->Clientes->get($id);

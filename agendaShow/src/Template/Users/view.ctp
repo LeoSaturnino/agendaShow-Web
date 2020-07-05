@@ -5,7 +5,7 @@
  */
 ?>
 <?= $this->element('Estabelecimentos/side-bar') ?>
-<div class="users view large-9 medium-8 columns content">
+<div class="users view large-10 medium-9 columns content">
     <h3><?= h($user->id) ?></h3>
     <table class="vertical-table">
         <tr>

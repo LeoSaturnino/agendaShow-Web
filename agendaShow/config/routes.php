@@ -48,73 +48,34 @@ Router::defaultRouteClass(DashedRoute::class);
 Router::scope('/', function (RouteBuilder $routes) {
     // Register scoped middleware for in scopes.
     $routes->registerMiddleware('csrf', new CsrfProtectionMiddleware([
-        'httpOnly' => true
+        'httpOnly' => true,
     ]));
 
-    /**
-     * Apply a middleware to the current route scope.
-     * Requires middleware to be registered via `Application::routes()` with `registerMiddleware()`
-     */
     $routes->applyMiddleware('csrf');
+    
+    $routes->redirect('/', ['controller' => 'Users', 'action' => 'login']);
 
-    /**
-     * Here, we are connecting '/' (base path) to a controller called 'Pages',
-     * its action called 'display', and we pass a param to select the view file
-     * to use (in this case, src/Template/Pages/home.ctp)...
-     */
-    $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
-
-    /**
-     * ...and connect the rest of 'Pages' controller's URLs.
-     */
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
-
-    /**
-     * Connect catchall routes for all controllers.
-     *
-     * Using the argument `DashedRoute`, the `fallbacks` method is a shortcut for
-     *
-     * ```
-     * $routes->connect('/:controller', ['action' => 'index'], ['routeClass' => 'DashedRoute']);
-     * $routes->connect('/:controller/:action/*', [], ['routeClass' => 'DashedRoute']);
-     * ```
-     *
-     * Any route class can be used with this method, such as:
-     * - DashedRoute
-     * - InflectedRoute
-     * - Route
-     * - Or your own route class
-     *
-     * You can remove these routes once you've connected the
-     * routes you want in your application.
-     */
-
-    // Router::prefix('admin', function (RouteBuilder $routes) {
-    //     $routes->fallbacks(DashedRoute::class);
-    // });
-
-    // Router::prefix('cli', function (RouteBuilder $routes) {
-    //     $routes->fallbacks(DashedRoute::class);
-    // });
-
 
     $routes->fallbacks(DashedRoute::class);
 });
 
-/**
- * If you need a different set of middleware or none at all,
- * open new scope and define routes there.
- *
- * ```
- * Router::scope('/api', function (RouteBuilder $routes) {
- *     // No $routes->applyMiddleware() here.
- *     // Connect API actions here.
- * });
- * ```
- */
-
 Router::scope('/api', function (RouteBuilder $routes) {
-        
-    $routes->connect('/pages/*', ['prefix' => 'Api', 'controller' => 'Pages', 'action' => 'display']);
 
-     });
+    $routes->connect('/loginapp', ['controller' => 'Api/Users', 'action' => 'loginapp']);
+    $routes->connect('/getEventos', ['controller' => 'Api/Eventos', 'action' => 'list']);
+    $routes->connect('/getEvento', ['controller' => 'Api/Eventos', 'action' => 'view']);
+    $routes->connect('/getEstabelecimentos', ['controller' => 'Api/Estabelecimentos', 'action' => 'list']);
+    $routes->connect('/getEstabelecimento', ['controller' => 'Api/Estabelecimentos', 'action' => 'view']);
+    $routes->connect('/getCidades', ['controller' => 'Api/Estabelecimentos', 'action' => 'listCidades']);
+    $routes->connect('/getCategorias', ['controller' => 'Api/Estabelecimentos', 'action' => 'listCategorias']);
+    $routes->connect('/getCliente', ['controller' => 'Api/Clientes', 'action' => 'view']);
+    $routes->connect('/addCliente', ['controller' => 'Api/Clientes', 'action' => 'add']);
+    $routes->connect('/editCliente', ['controller' => 'Api/Clientes', 'action' => 'edit']);
+    $routes->connect('/addUser', ['controller' => 'Api/Users', 'action' => 'add']);
+    $routes->connect('/addAvaliacao', ['controller' => 'Api/Avaliacoes', 'action' => 'add']);
+    $routes->connect('/getAvaliacao', ['controller' => 'Api/Avaliacoes', 'action' => 'view']);
+    $routes->connect('/getAvaliacoes', ['controller' => 'Api/Avaliacoes', 'action' => 'list']);
+    $routes->connect('/editAvaliacao', ['controller' => 'Api/Avaliacoes', 'action' => 'edit']);
+
+});

@@ -4,7 +4,8 @@
  * @var \App\Model\Entity\User $user
  */
 ?>
-<div class="users form large-9 medium-8 columns content">
+<div class="large-2 medium-3 columns" ></div>
+<div class="users form large-10 medium-9 columns content">
 <?= $this->Flash->render('auth') ?>
 
     <?= $this->Form->create('Login') ?>
@@ -15,6 +16,7 @@
             echo $this->Form->control('password');
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Login')) ?>
+    <?= $this->Form->button(__('Login'), ['class'=>"button" ]) ?>
     <?= $this->Form->end() ?>
+    <a href="/users/add" class="button">Cadastre-se</a>
 </div>

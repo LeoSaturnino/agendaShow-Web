@@ -5,19 +5,19 @@
  */
 ?>
 <?= $this->element('Estabelecimentos/side-bar') ?>
-<div class="eventos form large-9 medium-8 columns content">
+<div class="eventos form large-10 medium-9 columns content">
     <?= $this->Form->create($evento) ?>
     <fieldset>
         <legend><?= __('Add Evento') ?></legend>
         <?php
-            echo $this->Form->control('estabelecimentos_id', ['options' => [$estabelecimento->id], 'default' => $estabelecimento->id]);
+        
+            echo $this->Form->control('estabelecimentos_id', ['type'=>'text', 'readonly' => 'readonly', 'value' => $estabelecimento->id]);
             echo $this->Form->control('nome');
             echo $this->Form->control('descricao');
             echo $this->Form->control('banner');
             echo $this->Form->control('cronograma');
-            echo $this->Form->control('status');
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Submit'), ['class'=>"button" ]) ?>
     <?= $this->Form->end() ?>
 </div>

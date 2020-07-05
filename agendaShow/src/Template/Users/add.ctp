@@ -4,8 +4,8 @@
  * @var \App\Model\Entity\User $user
  */
 ?>
-<?= $this->element('Estabelecimentos/side-bar') ?>
-<div class="users form large-9 medium-8 columns content">
+<div class="large-2 medium-3 columns" ></div>
+<div class="users form large-10 medium-9 columns content">
     <?= $this->Form->create($user) ?>
     <fieldset>
         <legend><?= __('Add User') ?></legend>
@@ -16,6 +16,6 @@
             echo $this->Form->control('password');
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Submit'), ['class'=>"button" ]) ?>
     <?= $this->Form->end() ?>
 </div>

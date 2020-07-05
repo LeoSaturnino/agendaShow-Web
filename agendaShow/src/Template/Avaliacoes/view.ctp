@@ -6,7 +6,7 @@
 ?>
 <?= $this->element('Estabelecimentos/side-bar') ?>
 </nav>
-<div class="avaliacoes view large-9 medium-8 columns content">
+<div class="avaliacoes view large-10 medium-9 columns content">
     <h3><?= h($avaliaco->id) ?></h3>
     <table class="vertical-table">
         <tr>

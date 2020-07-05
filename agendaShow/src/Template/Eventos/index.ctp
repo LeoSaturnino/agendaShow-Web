@@ -5,7 +5,7 @@
  */
 ?>
 <?=$this->element('Estabelecimentos/side-bar')?>
-<div class="eventos index large-9 medium-8 columns content">
+<div class="eventos index large-10 medium-9 columns content">
     <h3><?=__('Eventos')?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>

@@ -12,44 +12,42 @@ use App\Controller\AppController;
  */
 class EstabelecimentosController extends AppController
 {
-    
+
     public function initialize()
     {
         parent::initialize();
         $this->Auth->allow(['*']);
     }
 
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null
-     */
-    function list($cidade = null) 
-    {
-        if ($cidade != null) {
-            $estabelecimentos = $this->Estabelecimentos->find('all')->where(['cidade' => $cidade]);
+    function list() {
+        $estabelecimentos = $this->Estabelecimentos->find('all');
 
-            $resultJ = json_encode($estabelecimentos);
-            $this->response->type('json');
-            $this->response->body($resultJ);
-            return $this->response;
-
-        }
-
-        $resultJ = json_encode(['error' => 'Requisição inadequada']);
+        $resultJ = json_encode($estabelecimentos);
         $this->response->type('json');
         $this->response->body($resultJ);
         return $this->response;
-
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Estabelecimento id.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+    public function listCidades()
+    {
+        $cidades = $this->Estabelecimentos->select('cidade');
+
+        $resultJ = json_encode($cidades);
+        $this->response->type('json');
+        $this->response->body($resultJ);
+        return $this->response;
+    }
+
+    public function listCategorias()
+    {
+        $categorias = $this->Estabelecimentos->select('categorias');
+
+        $resultJ = json_encode($categorias);
+        $this->response->type('json');
+        $this->response->body($resultJ);
+        return $this->response;
+    }
+
     public function view($id = null)
     {
         if ($id != null) {

@@ -76,8 +76,7 @@ class AvaliacoesTable extends Table
 
         $validator
             ->integer('status')
-            ->requirePresence('status', 'create')
-            ->notEmptyString('status');
+            ->allowEmpty('status');
 
         return $validator;
     }

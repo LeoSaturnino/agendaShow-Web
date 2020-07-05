@@ -68,24 +68,8 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
      */
     public function getAuthenticationService(ServerRequestInterface $request, ResponseInterface $response)
     {
-        $path = $request->getPath();
-
         $service = new AuthenticationService();
-        if (strpos($path, '/api') === 0) {
-            // Accept API tokens only
-            $service->setConfig([
-                'token' => 'covid2020',
-            ]);
-            $service->loadAuthenticator('Authentication.Token', [
-                'queryParam' => 'token',
-                'header' => 'Authorization',
-                'tokenPrefix' => 'Token'
-            ]);
-            $service->loadIdentifier('Authentication.Token');
-
-            return $service;
-        }
-
+       
         $service->setConfig([
             'unauthenticatedRedirect' => '/users/login',
             'queryParam' => 'redirect',
