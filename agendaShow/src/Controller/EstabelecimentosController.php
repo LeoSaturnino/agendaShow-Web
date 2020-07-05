@@ -44,7 +44,7 @@ class EstabelecimentosController extends AppController
 
         $eventos = $this->Eventos->find('all')->where(['estabelecimentos_id' => $id])->toList();
         
-        $this->set(compact('estabelecimento', 'user', 'eventos'));
+        $this->set(compact('estabelecimento', 'eventos'));
         // $this->set('estabelecimento', $estabelecimento);
     }
 
