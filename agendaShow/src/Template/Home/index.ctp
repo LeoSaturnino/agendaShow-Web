@@ -73,6 +73,13 @@
         font: bold;
         margin-top: 25px;
     }
+    a{
+        text-decoration: none;
+        color: white;
+    }
+    .link{
+        color:black;
+    }
 </style>
 
 <body>
@@ -84,10 +91,10 @@
                 AQUI VOCÊ ENCONTRA O QUE DESEJA ANTES DE SAIR DE CASA
             </p>
             <button class="button">
-            <a href="/users/login">ENTRAR</a>
+            <a class="link" href="/users/login">ENTRAR</a>
             </button>
             <div class="cadastrar">
-                <a href="/users/add">
+                <a>
                     NÃO POSSUI CADASTRO?
                 </a>
             </div>
