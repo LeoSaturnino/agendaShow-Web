@@ -17,7 +17,8 @@ $cakeDescription = 'Agenda Show';
 ?>
 <!DOCTYPE html>
 <html>
-<head>
+    <head>
+    <?= $this->Html->script('jquery-3.5.1') ?>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
@@ -56,4 +57,3 @@ $cakeDescription = 'Agenda Show';
     </footer>
 </body>
 </html>
-<?= $this->Html->script('jquery-3.5.1') ?>
