@@ -52,8 +52,8 @@ Router::scope('/', function (RouteBuilder $routes) {
     ]));
 
     $routes->applyMiddleware('csrf');
-    
-    $routes->redirect('/', ['controller' => 'Users', 'action' => 'login']);
+
+    $routes->connect('/', ['controller' => 'Home', 'action' => 'index']);
 
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 

@@ -47,6 +47,8 @@ class AppController extends Controller
         $this->loadComponent('Flash');
         
         $this->loadComponent('Authentication.Authentication');
+        
+        $this->Authentication->allowUnauthenticated(['Home.index']);
 
     }
 }

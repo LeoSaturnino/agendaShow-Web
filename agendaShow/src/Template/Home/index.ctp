@@ -9,37 +9,37 @@
         height: 100%;
         margin: 0px;
     }
-    
+
     body {
         font-family: "BEBAS NEUE", sans-serif;
     }
-    
+
     h1 {
         color: #FFFFFF;
         font-size: 80px;
     }
-    
+
     p {
         color: #FFFFFF;
         font-size: 50px;
         padding-top: 10px;
         padding-right: 20%;
     }
-    
+
     .fundo {
-        background-image: url('fundo_principal.jpeg');
+        background-image: url('/img/fundo_principal.jpeg');
         min-height: 100%;
         background-position: center;
         background-size: cover;
         margin-top: 0px;
         opacity: 90%;
     }
-    
+
     .estrutura {
         padding-top: 70px;
         padding-left: 5%;
     }
-    
+
     .button {
         display: inline-block;
         padding: 5px 5px;
@@ -55,16 +55,16 @@
         width: 300px;
         font: bold;
     }
-    
+
     .button:hover {
         background-color: #81e485;
     }
-    
+
     .button:active {
         background-color: #81e485;
         transform: translateY(4px);
     }
-    
+
     .cadastrar {
         font-size: 22PX;
         text-align: center;
@@ -84,15 +84,15 @@
                 AQUI VOCÊ ENCONTRA O QUE DESEJA ANTES DE SAIR DE CASA
             </p>
             <button class="button">
-                ENTRAR
+            <a href="/users/login">ENTRAR</a>
             </button>
             <div class="cadastrar">
-                <a>
+                <a href="/users/add">
                     NÃO POSSUI CADASTRO?
                 </a>
             </div>
             <div class="cadastrar">
-                <a>
+                <a href="/users/add">
                     CADASTRAR
                 </a>
             </div>
