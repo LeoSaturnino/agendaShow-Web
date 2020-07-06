@@ -10,12 +10,14 @@ use App\Controller\AppController;
  *
  * @method \App\Model\Entity\Avaliaco[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class AvaliacoesController extends AppController
+class ApiAvaliacoesController extends AppController
 {
 
     public function initialize()
     {
-        parent::initialize();
+        parent::initialize();        
+        $this->loadModel('Avaliacoes');
+
     }
 
     public function view($id = null)

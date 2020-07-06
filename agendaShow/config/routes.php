@@ -62,20 +62,20 @@ Router::scope('/', function (RouteBuilder $routes) {
 
 Router::scope('/api', function (RouteBuilder $routes) {
 
-    $routes->connect('/loginapp', ['controller' => 'Api/Users', 'action' => 'loginapp']);
-    $routes->connect('/getEventos', ['controller' => 'Api/Eventos', 'action' => 'list']);
-    $routes->connect('/getEvento', ['controller' => 'Api/Eventos', 'action' => 'view']);
-    $routes->connect('/getEstabelecimentos', ['controller' => 'Api/Estabelecimentos', 'action' => 'list']);
-    $routes->connect('/getEstabelecimento', ['controller' => 'Api/Estabelecimentos', 'action' => 'view']);
-    $routes->connect('/getCidades', ['controller' => 'Api/Estabelecimentos', 'action' => 'listCidades']);
-    $routes->connect('/getCategorias', ['controller' => 'Api/Estabelecimentos', 'action' => 'listCategorias']);
-    $routes->connect('/getCliente', ['controller' => 'Api/Clientes', 'action' => 'view']);
-    $routes->connect('/addCliente', ['controller' => 'Api/Clientes', 'action' => 'add']);
-    $routes->connect('/editCliente', ['controller' => 'Api/Clientes', 'action' => 'edit']);
-    $routes->connect('/addUser', ['controller' => 'Api/Users', 'action' => 'add']);
-    $routes->connect('/addAvaliacao', ['controller' => 'Api/Avaliacoes', 'action' => 'add']);
-    $routes->connect('/getAvaliacao', ['controller' => 'Api/Avaliacoes', 'action' => 'view']);
-    $routes->connect('/getAvaliacoes', ['controller' => 'Api/Avaliacoes', 'action' => 'list']);
-    $routes->connect('/editAvaliacao', ['controller' => 'Api/Avaliacoes', 'action' => 'edit']);
+    $routes->connect('/loginapp', ['controller' => 'ApiUsers', 'action' => 'loginapp']);
+    $routes->connect('/getEventos', ['controller' => 'ApiEventos', 'action' => 'list']);
+    $routes->connect('/getEvento', ['controller' => 'ApiEventos', 'action' => 'view']);
+    $routes->connect('/getEstabelecimentos', ['controller' => 'ApiEstabelecimentos', 'action' => 'list']);
+    $routes->connect('/getEstabelecimento', ['controller' => 'ApiEstabelecimentos', 'action' => 'view']);
+    $routes->connect('/getCidades', ['controller' => 'ApiEstabelecimentos', 'action' => 'listCidades']);
+    $routes->connect('/getCategorias', ['controller' => 'ApiEstabelecimentos', 'action' => 'listCategorias']);
+    $routes->connect('/getCliente', ['controller' => 'ApiClientes', 'action' => 'view']);
+    $routes->connect('/addCliente', ['controller' => 'ApiClientes', 'action' => 'add']);
+    $routes->connect('/editCliente', ['controller' => 'ApiClientes', 'action' => 'edit']);
+    $routes->connect('/addUser', ['controller' => 'ApiUsers', 'action' => 'add']);
+    $routes->connect('/addAvaliacao', ['controller' => 'ApiAvaliacoes', 'action' => 'add']);
+    $routes->connect('/getAvaliacao', ['controller' => 'ApiAvaliacoes', 'action' => 'view']);
+    $routes->connect('/getAvaliacoes', ['controller' => 'ApiAvaliacoes', 'action' => 'list']);
+    $routes->connect('/editAvaliacao', ['controller' => 'ApiAvaliacoes', 'action' => 'edit']);
 
 });

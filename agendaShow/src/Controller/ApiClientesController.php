@@ -10,13 +10,14 @@ use App\Controller\AppController;
  *
  * @method \App\Model\Entity\Cliente[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class ClientesController extends AppController
+class ApiClientesController extends AppController
 {
 
     public function initialize()
     {
         parent::initialize();
         $this->Auth->allow(['add']);
+        $this->loadModel('Clientes');
     }
 
     public function view($id = null)

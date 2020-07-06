@@ -10,7 +10,7 @@ use App\Controller\AppController;
  *
  * @method \App\Model\Entity\User[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class UsersController extends AppController
+class ApiUsersController extends AppController
 {
 
     public function initialize()
@@ -18,6 +18,7 @@ class UsersController extends AppController
         parent::initialize();
 
         $this->Authentication->allowUnauthenticated(['login', 'add']);
+        $this->loadModel('Users');
     }
 
     public function loginapp()

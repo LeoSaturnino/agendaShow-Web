@@ -10,27 +10,35 @@ use App\Controller\AppController;
  *
  * @method \App\Model\Entity\Estabelecimento[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class EstabelecimentosController extends AppController
+class ApiEstabelecimentosController extends AppController
 {
 
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['*']);
+        $this->Authentication->allowUnauthenticated(['*']);
+        $this->loadModel('Estabelecimentos');
     }
 
     function list() {
-        $estabelecimentos = $this->Estabelecimentos->find('all');
+        $estabelecimentos = $this->Estabelecimentos->find('all')->toList();
 
-        $resultJ = json_encode($estabelecimentos);
-        $this->response->type('json');
-        $this->response->body($resultJ);
-        return $this->response;
+        if (!empty($estabelecimentos)) {
+            $resultJ = json_encode($estabelecimentos);
+            $this->response->type('json');
+            $this->response->body($resultJ);
+            return $this->response;
+        } else {
+            $resultJ = json_encode([]);
+            $this->response->type('json');
+            $this->response->body($resultJ);
+            return $this->response;
+        }
     }
 
     public function listCidades()
     {
-        $cidades = $this->Estabelecimentos->select('cidade');
+        $cidades = $this->Estabelecimentos->select('cidade')->toList();
 
         $resultJ = json_encode($cidades);
         $this->response->type('json');
@@ -40,7 +48,7 @@ class EstabelecimentosController extends AppController
 
     public function listCategorias()
     {
-        $categorias = $this->Estabelecimentos->select('categorias');
+        $categorias = $this->Estabelecimentos->select('categorias')->toList();
 
         $resultJ = json_encode($categorias);
         $this->response->type('json');

@@ -10,30 +10,31 @@ use App\Controller\AppController;
  *
  * @method \App\Model\Entity\Evento[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class EventosController extends AppController
+class ApiEventosController extends AppController
 {
 
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['*']);
+        $this->Authentication->allowUnauthenticated(['*']);
+        $this->loadModel('Eventos');
     }
-    
-    function list($cidade = null) {
-        if ($cidade != null) {
-            $eventos = $this->Eventos->find('all')->contin(['Estabelecimentos'])->where(['Estabelecimentos.cidade' => $cidade]);
+
+    function list() {
+        $eventos = $this->Eventos->find('all')->toList();
+        if (!empty($eventos)) {
 
             $resultJ = json_encode($eventos);
             $this->response->type('json');
             $this->response->body($resultJ);
             return $this->response;
-
+        } else {
+            $resultJ = json_encode([]);
+            $this->response->type('json');
+            $this->response->body($resultJ);
+            return $this->response;
         }
 
-        $resultJ = json_encode(['error' => 'Requisição inadequada']);
-        $this->response->type('json');
-        $this->response->body($resultJ);
-        return $this->response;
     }
 
     public function view($id = null)
