@@ -56,3 +56,4 @@ $cakeDescription = 'Agenda Show';
     </footer>
 </body>
 </html>
+<?= $this->Html->script('jquery-3.5.1') ?>

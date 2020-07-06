@@ -105,14 +105,27 @@ class EstabelecimentosTable extends Table
             ->notEmptyString('numero');
 
         $validator
+            ->scalar('uf')
+            ->maxLength('uf', 10)
+            ->requirePresence('uf', 'create')
+            ->notEmptyString('uf');
+
+        $validator
             ->scalar('cidade')
             ->maxLength('cidade', 45)
             ->requirePresence('cidade', 'create')
             ->notEmptyString('cidade');
 
         $validator
+            ->scalar('bairro')
+            ->maxLength('bairro', 70)
+            ->requirePresence('bairro', 'create')
+            ->notEmptyString('bairro');
+
+        $validator
             ->integer('status')
-            ->allowEmpty('status');
+            ->requirePresence('status', 'create')
+            ->notEmptyString('status');
 
         return $validator;
     }

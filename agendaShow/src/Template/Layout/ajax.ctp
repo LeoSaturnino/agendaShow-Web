@@ -14,3 +14,4 @@
  */
 
 echo $this->fetch('content');
+echo $this->Html->script('jquery-3.5.1');

@@ -82,8 +82,13 @@ class UsersController extends AppController
         $user = $this->Users->get($id, [
             'contain' => [],
         ]);
-
+        
+        $this->loadModel('Estabelecimentos');
+        // Necessário mudar nome da váriavel para "institutes" devido ao header/sidebar que tem o mesmo nome para a váriavel;
+        $institutes = $this->Estabelecimentos->find('all')->where(['Estabelecimentos.users_id' => $id])->toList();
+        $this->set(compact('institutes', 'users'));
         $this->set('user', $user);
+        // $this->set('user', $user);
     }
 
     /**

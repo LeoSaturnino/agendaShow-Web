@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\Log\Log;
 /**
  * Estabelecimentos Controller
  *
@@ -59,11 +59,13 @@ class EstabelecimentosController extends AppController
         $estabelecimento = $this->Estabelecimentos->newEntity();
         if ($this->request->is('post')) {
             $estabelecimento = $this->Estabelecimentos->patchEntity($estabelecimento, $this->request->getData());
+            Log::write('debug', $estabelecimento);
             if ($this->Estabelecimentos->save($estabelecimento)) {
                 $this->Flash->success(__('The estabelecimento has been saved.'));
 
                 return $this->redirect(['action' => 'view', $estabelecimento->id]);
             }
+            // Log::write('debug',  $this->Estabelecimentos->save($estabelecimento));
             $this->Flash->error(__('The estabelecimento could not be saved. Please, try again.'));
         }
         $user = $this->Estabelecimentos->Users->get($id);

@@ -8,15 +8,17 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $users_id
+ * @property string $proprietario
  * @property string $nome
  * @property int|null $categoria
- * @property string $proprietario
  * @property string|null $telefone
  * @property string $celular
- * @property string $logradouro
  * @property string $cep
+ * @property string $logradouro
  * @property string $numero
+ * @property string $uf
  * @property string $cidade
+ * @property string $bairro
  * @property int $status
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
@@ -36,15 +38,17 @@ class Estabelecimento extends Entity
      */
     protected $_accessible = [
         'users_id' => true,
+        'proprietario' => true,
         'nome' => true,
         'categoria' => true,
-        'proprietario' => true,
         'telefone' => true,
         'celular' => true,
-        'logradouro' => true,
         'cep' => true,
+        'logradouro' => true,
         'numero' => true,
+        'uf' => true,
         'cidade' => true,
+        'bairro' => true,
         'status' => true,
         'created' => true,
         'modified' => true,
